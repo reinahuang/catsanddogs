@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: back-python:v0 # 替换为你准备的 backend 镜像
+        image: ghcr.io/reinahuang/catsanddogs/backend:1.0.1 # 替换为你准备的 backend 镜像
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
