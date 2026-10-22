@@ -1,0 +1,31 @@
+prometheus:
+  prometheusSpec:
+    # 限制日志/指标保存时间为 3 天，防止硬盘满了
+    retention: 3d
+    # 限制 Prometheus 内存使用，防止压垮 VM 节点
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+
+grafana:
+  # 设置 Grafana 登录密码（账号默认是 admin）
+  adminPassword: "admin"
+  service:
+    type: ClusterIP
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "128Mi"
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+# 开启 Node-Exporter 和 Kube-State-Metrics 抓取基础指标
+nodeExporter:
+  enabled: true
+kubeStateMetrics:
+  enabled: true

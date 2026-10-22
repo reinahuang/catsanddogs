@@ -1,0 +1,18 @@
+#10-ingress-servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ingress-nginx-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus # 必须保持与 Helm 发布的 prometheus release 名称一致
+spec:
+  endpoints:
+  - port: metrics # 对应06-ingress-nginx-deploy.yaml 中port 10254的 port name
+    interval: 15s
+  namespaceSelector:
+    matchNames:
+    - ingress-nginx  # 匹配 Ingress 所在的命名空间
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ingress-nginx # 匹配你的 Ingress Service 标签

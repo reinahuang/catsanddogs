@@ -1,0 +1,27 @@
+# 1. Python 编译缓存与运行缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 2. Python 环境与依赖库（本地虚拟环境）
+.venv/
+venv/
+ENV/
+env/
+
+# 3. 环境变量与敏感密钥文件（防止密钥泄露）
+.env
+.env.local
+*.pem
+
+# 4. IDE 编辑器与系统临时文件
+.vscode/
+.idea/
+*.swp
+*.bak
+.DS_Store
+Thumbs.db
+
+# 5. 日志与运行监控缓存
+*.log
