@@ -25,3 +25,7 @@ Thumbs.db
 
 # 5. 日志与运行监控缓存
 *.log
+# Ignore K8s secret manifest
+
+##6. secret文件
+k8s/*secret*.yaml
