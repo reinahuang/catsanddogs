@@ -18,7 +18,7 @@ spec:
       - name: frontend
         # 如果你打包了本地镜像，填入镜像名；
         # 这里演示直接使用官方 python:3.10-slim 镜像，并用 python -m http.server 启动一个极简 HTTP 前端
-        image: front-python:v0
+        image: ghcr.io/reinahuang/catsanddogs/frontend:1.0.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
