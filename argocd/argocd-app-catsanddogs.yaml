@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'git@github.com:reinahuang/catsanddogs.git'
     targetRevision: main             # 监听 main 分支
-    path: 'k8s'           # 指向存放 YAML 的目录（或根目录 .）
+    path: '.'           # 指向存放 YAML 的目录（或根目录 .）
 
   # 2. 目标集群定义
   destination:
