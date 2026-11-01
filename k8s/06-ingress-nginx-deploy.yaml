@@ -401,7 +401,7 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 spec:
-  minReadySeconds: 0
+  # minReadySeconds: 0
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -469,7 +469,7 @@ spec:
         - containerPort: 10254
           name: metrics
           protocol: TCP
-          targetPort: 10254
+          # targetPort: 10254
         readinessProbe:
           failureThreshold: 3
           httpGet:
