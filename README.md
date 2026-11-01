@@ -8,11 +8,15 @@ A Cloud-Native multi-service application (Frontend & Backend) featuring automate
 
 ## 🏗️ Architecture & Tech Stack (架构与技术栈)
 
-- **Microservices**: Frontend & Backend services
+- **Microservices**: Frontend & Backend services (`catsanddogs`)
 - **Container Registry**: GitHub Container Registry (GHCR)
-- **CI/CD Pipeline**: GitHub Actions (`docker/metadata-action`, `docker/build-push-action`)
-- **GitOps Operator**: FluxCD (`source-controller`, `kustomize-controller`)
-- **Container Orchestration**: Kubernetes (K8s)
+- **CI/CD Pipeline**: GitHub Actions (`docker/metadata-action`, `docker/build-push-action`, Trunk-Based PR Workflows)
+- **GitOps Operators**: 
+  - **FluxCD**: (`source-controller`, `kustomize-controller`) - Cluster infrastructure & source reconciliation
+  - **ArgoCD**: Core GitOps Continuous Delivery & Application Lifecycle Manager
+- **Ingress & API Gateway**: Nginx Ingress Controller (with eBPF & TLS Backend Passthrough Annotations)
+- **Container Network Interface (CNI)**: Cilium (eBPF-based Datapath)
+- **Container Orchestration**: Kubernetes (K8s / K3s)
 
 ---
 
