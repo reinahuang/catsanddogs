@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    # 1.告诉 nginx 后端使用的是 HTTPS 协议
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    # 2：开启 SSL Passthrough（透传）或允许自签名证书重定向
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    # 3：如果遇到大文件传输可以开启 ssl passthrough,避免 GRPC / WebSocket 长连接被 Nginx 提前切断
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: argocd.lab.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: https
