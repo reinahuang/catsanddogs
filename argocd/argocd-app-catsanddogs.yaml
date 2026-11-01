@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: catsanddogs-app
+  namespace: argocd
+  # 开启级联删除：当删除这个 Application 时，自动清理集群里对应的业务 Pod
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  # 1. 源定义 (替代 FluxCD 的 GitRepository)
+  source:
+    repoURL: 'git@github.com:reinahuang/catsanddogs.git'
+    targetRevision: main             # 监听 main 分支
+    path: 'k8s'           # 指向存放 YAML 的目录（或根目录 .）
+
+  # 2. 目标集群定义
+  destination:
+    server: 'https://kubernetes.default.svc' # 部署到当前集群
+    namespace: argocd                       # 业务命名空间
+
+  # 3. 自动化 Sync 策略 (替代 FluxCD 的 auto reconcile & prune)
+  syncPolicy:
+    automated:
+      prune: true                    # 自动删除 Git 中已废弃的资源 (物理强强对齐)
+      selfHeal: true                 # 自动修正手动修改集群引发的配置漂移
+    syncOptions:
+      - CreateNamespace=true         # 自动创建不存在的 Namespace
