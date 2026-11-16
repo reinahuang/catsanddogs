@@ -1,20 +1,29 @@
+# variables.tf
+# Declare variables for Terraform configuration
+variable "environment" {
+  type        = string
+  description = "Deployment environment"
+  default     = "dev"
+}
+
+
+variable "vpcs" {
+  description = "List of VPCs to create"
+  type        = list(object({
+    vpc_name   = string
+    cidr_block = string
+    subnets    = list(object({
+      subnet_name        = string
+      cidr_block         = string
+      availability_zone  = optional(string, "cn-shanghai-g") # Default to cn-shanghai-g if not provided
+    }))
+  }))
+}
+
 variable "region" {
   type        = string
   description = "阿里云部署地域"
   default     = "cn-shanghai"
 }
 
-variable "vpc_cidr" {
-  type        = string
-  description = "VPC 专有网络网段，例如 172.16.0.0/16"
-}
 
-variable "subnet_cidrs" {
-  type        = list(string)
-  description = "跨可用区交换机（VSwitch）子网网段列表"
-}
-
-variable "availability_zones" {
-  type        = list(string)
-  description = "可用区 ID 列表，例如 [\"cn-shanghai-a\", \"cn-shanghai-b\"]"
-}
