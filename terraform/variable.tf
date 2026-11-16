@@ -1,15 +1,3 @@
-variable "alicloud_access_key" {
-  type        = string
-  description = "阿里云 Access Key ID"
-}
-
-variable "alicloud_secret_key" {
-  type        = string
-  description = "阿里云 Access Key Secret"
-  sensitive   = true
-}
-
-
 variable "region" {
   type        = string
   description = "阿里云部署地域"
