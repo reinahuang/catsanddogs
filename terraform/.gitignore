@@ -1,0 +1,30 @@
+# 1. 本地插件与初始化缓存目录（体积大，每次 init 可重新下载）
+**/.terraform/*
+
+# 2. 状态文件（核心敏感：里面直接包含生成的 AccessKey Secret 等明文敏感数据）
+*.tfstate
+*.tfstate.*
+
+# 3. 崩溃日志文件
+crash.log
+crash.*.log
+
+# 4. 敏感变量与凭证文件（确保 AK/SK 绝不泄露）
+*secret*
+*credential*
+secrets.tfvars
+terraform.tfvars
+terraform.tfvars.json
+
+# 注意：不在此处写死忽略所有 *.tfvars，以便允许脱敏的 tf-dev.tfvars 和 tf-prod.tfvars 正常提交到 Git 进行团队配置同步
+
+# 5. 覆盖配置文件（通常用于本地临时测试覆盖）
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# 6. CLI 配置文件与本地 Plan 导出二进制文件
+.terraformrc
+terraform.rc
+*.tfplan
